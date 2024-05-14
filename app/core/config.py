@@ -16,6 +16,7 @@ class Settings(BaseSettings):
     BACKEND_DOMAIN: str = os.getenv("BACKEND_DOMAIN", "")
     FRONTEND_URL: str = os.getenv("FRONTEND_URL", "")
     API_V1_STR: str = "/api/v1"
+    API_V2_STR: str = "/api/v2"
     PROJECT_NAME: str = "Botan Task"
     SECRET_KEY: str
     ALGORITHM: str = "HS256"
