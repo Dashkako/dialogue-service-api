@@ -14,6 +14,20 @@ services:
     depends_on:
       - postgres
 
+  generate-api:
+    hostname: generate-api
+    container_name: generate-api
+    image: dialog-api
+    restart: always
+    build: .
+    ports:
+      - ${APP_GENERATE_PORT}:${APP_GENERATE_PORT}
+    command: gunicorn --bind :${APP_GENERATE_PORT} --workers 1 app.main_generate:app --worker-class uvicorn.workers.UvicornWorker --preload --timeout 120
+    env_file:
+      - ./.env
+    depends_on:
+      - postgres
+
   postgres:
     image: postgres:14.4
     hostname: postgres_db
